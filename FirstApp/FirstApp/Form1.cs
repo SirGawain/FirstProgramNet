@@ -12,6 +12,8 @@ namespace FirstApp
 {
     public partial class MainForm : Form
     {
+        int count = 0;
+
         public MainForm()
         {
             InitializeComponent();
@@ -25,6 +27,24 @@ namespace FirstApp
         private void tsmiAbout_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Программа мои утилиты, содержит ряд небольших программ, которые могут пригодиться в жизни.", "О программе");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            count++;
+            label1.Text = count.ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            count--;
+            label1.Text = count.ToString();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            count=0;
+            label1.Text = Convert.ToString(count);
         }
     }
 }
