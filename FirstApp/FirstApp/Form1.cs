@@ -74,5 +74,49 @@ namespace FirstApp
         {
             Clipboard.SetText(textBox1.Text);
         }
+
+        private void tsmiInsertDate_Click(object sender, EventArgs e)
+        {
+            richTextBox1.AppendText(DateTime.Now.ToShortDateString()+"\n");
+        }
+
+        private void tsmiInsertTime_Click(object sender, EventArgs e)
+        {
+            richTextBox1.AppendText(DateTime.Now.ToShortTimeString() + "\n");
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                richTextBox1.SaveFile("natepad.rtf");
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка");
+            }
+        }
+
+        void LoadText()
+        {
+            try
+            {
+                richTextBox1.LoadFile("natepad.rtf");
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка");
+            }
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadText(); 
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            LoadText();
+        }
     }
 }
