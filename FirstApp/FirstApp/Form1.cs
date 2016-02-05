@@ -14,6 +14,7 @@ namespace FirstApp
     {
         int count = 0;
         Random rnd;
+        char[] mas_sym = new char[] {'&','%','@','+','-', '?' ,'|','!' };
 
         public MainForm()
         {
@@ -117,6 +118,40 @@ namespace FirstApp
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadText();
+            checkedListBox1.SetItemChecked(0, true);
+            checkedListBox1.SetItemChecked(2, true);
+        }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (checkedListBox1.CheckedItems.Count == 0)
+                return;
+            string password = "";
+            for(int i=0; i<numericUpDown3.Value; i++)
+            {
+                int n = rnd.Next(0, checkedListBox1.CheckedItems.Count);
+                switch(n)
+                {
+                    case 0:
+                        password += rnd.Next(10).ToString();
+                        break;
+                    case 1:
+                        password += Convert.ToChar(rnd.Next(65, 88)); //коды прописных букв
+                        break;
+                    case 2:
+                        password += Convert.ToChar(rnd.Next(97, 122)); //коды строчных букв
+                        break;
+                    default:
+                        password += mas_sym[rnd.Next(mas_sym.Length)];
+                        break;
+                }
+            }
+            textBox2.Text = password;
         }
     }
 }
