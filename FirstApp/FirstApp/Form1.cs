@@ -13,10 +13,12 @@ namespace FirstApp
     public partial class MainForm : Form
     {
         int count = 0;
+        Random rnd;
 
         public MainForm()
         {
             InitializeComponent();
+            rnd = new Random();
         }
 
         private void tsmiExit_Click(object sender, EventArgs e)
@@ -45,6 +47,32 @@ namespace FirstApp
         {
             count=0;
             label1.Text = Convert.ToString(count);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int n;
+            n = rnd.Next(Convert.ToInt32(numericUpDown1.Value), Convert.ToInt32(numericUpDown2.Value)+1 );
+            label2.Text=n.ToString();
+            if (checkBox1.Checked == true)
+            {
+                if (textBox1.Text.IndexOf(n.ToString()) == -1)
+                    textBox1.AppendText(n + "\n");
+            }
+            else
+            {
+                textBox1.AppendText(n + "\n");
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(textBox1.Text);
         }
     }
 }
