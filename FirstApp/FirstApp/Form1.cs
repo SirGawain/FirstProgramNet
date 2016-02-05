@@ -15,11 +15,19 @@ namespace FirstApp
         int count = 0;
         Random rnd;
         char[] mas_sym = new char[] {'&','%','@','+','-', '?' ,'|','!' };
+        Dictionary <string, double> metrica;
 
         public MainForm()
         {
             InitializeComponent();
             rnd = new Random();
+            metrica = new Dictionary <string, double>();
+            metrica.Add("mm", 1);
+            metrica.Add("cm", 10);
+            metrica.Add("dm", 100);
+            metrica.Add("m", 1000);
+            metrica.Add("km", 1000000);
+            metrica.Add("mile", 1609344);
         }
 
         private void tsmiExit_Click(object sender, EventArgs e)
@@ -152,6 +160,79 @@ namespace FirstApp
                 }
             }
             textBox2.Text = password;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            double m1 = metrica[comboBox1.Text];
+            double m2 = metrica[comboBox2.Text];
+            double n = Convert.ToDouble(textBox3.Text);
+            textBox4.Text = (n * m1 / m2).ToString();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            string temp;
+            temp = comboBox1.Text;
+            comboBox1.Text = comboBox2.Text;
+            comboBox2.Text = temp;
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox3.Text)
+            {
+                case "длина":
+                    metrica.Clear();
+                    metrica.Add("mm", 1);
+                    metrica.Add("cm", 10);
+                    metrica.Add("dm", 100);
+                    metrica.Add("m", 1000);
+                    metrica.Add("km", 1000000);
+                    metrica.Add("mile", 1609344);
+                    ///////////////////////////
+                    comboBox1.Items.Clear();
+                    comboBox1.Items.Add("mm");
+                    comboBox1.Items.Add("cm");
+                    comboBox1.Items.Add("dm");
+                    comboBox1.Items.Add("m");
+                    comboBox1.Items.Add("km");
+                    comboBox1.Items.Add("mile");
+                    comboBox1.Text="mm";
+                    //////////////////////////////
+                    comboBox2.Items.Clear();
+                    comboBox2.Items.Add("mm");
+                    comboBox2.Items.Add("cm");
+                    comboBox2.Items.Add("dm");
+                    comboBox2.Items.Add("m");
+                    comboBox2.Items.Add("km");
+                    comboBox2.Items.Add("mile");
+                    comboBox2.Text = "mm";
+                    break;
+                case "вес":
+                    metrica.Clear();
+                    metrica.Add("g", 1);
+                    metrica.Add("kg", 1000);
+                    metrica.Add("t", 1000000);
+                    metrica.Add("lb", 453.6);
+                    ///////////////////////////
+                    comboBox1.Items.Clear();
+                    comboBox1.Items.Add("g");
+                    comboBox1.Items.Add("kg");
+                    comboBox1.Items.Add("t");
+                    comboBox1.Items.Add("lb");
+                    comboBox1.Text = "g";
+                    //////////////////////////////
+                    comboBox2.Items.Clear();
+                    comboBox2.Items.Add("g");
+                    comboBox2.Items.Add("kg");
+                    comboBox2.Items.Add("t");
+                    comboBox2.Items.Add("lb");
+                    comboBox2.Text = "g";
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
